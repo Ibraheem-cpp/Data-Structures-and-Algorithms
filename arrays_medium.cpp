@@ -878,7 +878,7 @@ void spiral_traversal_of_matrix(std::vector<std::vector<int>> mat, int r , int c
     //      Space Complexity -> O(1)
 }
 
-std::vector<std::vector<int>> rotate_matrix_90_degrees(std::vector<std::vector<int>> mat, int r , int c){
+void rotate_matrix_90_degrees(std::vector<std::vector<int>> &mat, int r , int c){
 
     /*
                     BRUTE FORCE
@@ -902,11 +902,34 @@ std::vector<std::vector<int>> rotate_matrix_90_degrees(std::vector<std::vector<i
     }
     
 
-    return mat2;
+    print(mat2,r2,c2);
         Time Complexity -> O(r x c) + O(c x r/2) -> Simplifies to O(r x c)
         Space Complexity -> O(r x c)
 
     */
+
+
+
+    //                  OPTIMAL APPROACH 
+    //  -> Only for square matrices
+
+    for(int i=0;i<r-1;i++){
+        for(int j=i+1;j<c;j++){
+            swapp(mat[i][j] , mat[j][i]);
+        }
+    }
+    //  -> we visit almost half elements ((n^2 - n)/2) -> O(n^2) -> O(r x c)
+
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c/2;j++){
+            swapp(mat[i][j] , mat[i][c-j-1]);
+        }
+    }
+
+
+    //      Time Complexity -> O(r x c) + O(r x c/2) -> Simplifies to O(r x c)
+    //      Space Complexity -> O(1)
+
 }
 
 int main(){
@@ -927,9 +950,9 @@ int main(){
 
     print(mat,r,c);
 
-    std::vector<std::vector<int>> mat2 = rotate_matrix_90_degrees(mat,r,c);
+    rotate_matrix_90_degrees(mat,r,c);
 
-    print(mat2,c,r);
+    print(mat,r,c);
 
 
     return 0;
