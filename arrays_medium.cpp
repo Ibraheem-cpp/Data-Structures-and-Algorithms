@@ -878,6 +878,37 @@ void spiral_traversal_of_matrix(std::vector<std::vector<int>> mat, int r , int c
     //      Space Complexity -> O(1)
 }
 
+std::vector<std::vector<int>> rotate_matrix_90_degrees(std::vector<std::vector<int>> mat, int r , int c){
+
+    /*
+                    BRUTE FORCE
+
+    std::vector<std::vector<int>> mat2;
+    int r2 = c;
+    int c2 = r;
+
+    for(int i=0;i<r2;i++){
+        std::vector<int> row;
+        for(int j=0;j<c2;j++){
+            row.push_back(mat[j][i]);
+        }
+        mat2.push_back(row);
+    }
+
+    for(int i=0;i<r2;i++){
+        for(int j=0;j<c2/2;j++){
+            swapp(mat2[i][j],mat2[i][c2-j-1]);
+        }
+    }
+    
+
+    return mat2;
+        Time Complexity -> O(r x c) + O(c x r/2) -> Simplifies to O(r x c)
+        Space Complexity -> O(r x c)
+
+    */
+}
+
 int main(){
 
     int r,c,n;
@@ -896,7 +927,9 @@ int main(){
 
     print(mat,r,c);
 
-    spiral_traversal_of_matrix(mat,r,c);
+    std::vector<std::vector<int>> mat2 = rotate_matrix_90_degrees(mat,r,c);
+
+    print(mat2,c,r);
 
 
     return 0;
