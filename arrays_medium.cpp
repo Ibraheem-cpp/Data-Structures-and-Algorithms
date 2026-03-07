@@ -932,6 +932,50 @@ void rotate_matrix_90_degrees(std::vector<std::vector<int>> &mat, int r , int c)
 
 }
 
+void set_row(std::vector<std::vector<int>> &mat, int i , int c){
+    for(int j=0;j<c;j++){
+        if(mat[i][j] != 0){
+            mat[i][j] = -1;
+        }
+    }
+}
+
+void set_column(std::vector<std::vector<int>> &mat, int r , int j){
+    for(int i=0;i<r;i++){
+        if(mat[i][j] != 0){
+            mat[i][j] = -1;
+        }
+    }
+}
+
+void set_matrix_zeroes(std::vector<std::vector<int>> &mat, int r , int c){
+
+    /*
+                    BRUTE FORCE
+
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(mat[i][j] == 0){
+                set_row(mat,i,c);
+                set_column(mat,r,j);
+            }
+        }
+    }
+
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(mat[i][j] == -1){
+                mat[i][j] = 0;
+            }
+        }
+    }
+            Time Complexity -> O((r x c)x(r + c)) + O(r x c)
+            Space Complexity -> O(1)
+
+    */
+
+}
+
 int main(){
 
     int r,c,n;
@@ -950,7 +994,7 @@ int main(){
 
     print(mat,r,c);
 
-    rotate_matrix_90_degrees(mat,r,c);
+    set_matrix_zeroes(mat,r,c);
 
     print(mat,r,c);
 
