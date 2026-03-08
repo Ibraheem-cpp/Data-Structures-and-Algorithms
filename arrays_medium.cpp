@@ -939,7 +939,6 @@ void set_row(std::vector<std::vector<int>> &mat, int i , int c){
         }
     }
 }
-
 void set_column(std::vector<std::vector<int>> &mat, int r , int j){
     for(int i=0;i<r;i++){
         if(mat[i][j] != 0){
@@ -947,7 +946,6 @@ void set_column(std::vector<std::vector<int>> &mat, int r , int j){
         }
     }
 }
-
 void set_matrix_zeroes(std::vector<std::vector<int>> &mat, int r , int c){
 
     /*
@@ -974,6 +972,35 @@ void set_matrix_zeroes(std::vector<std::vector<int>> &mat, int r , int c){
 
     */
 
+
+    /*
+                    BETTER APPROACH
+
+    int row[r] = {0};
+    int col[c] = {0};
+
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(mat[i][j] == 0){
+                row[i] = 1;
+                col[j] = 1;
+            }
+        }
+    }
+
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(row[i] == 1 || col[j] == 1){
+                mat[i][j] = 0;
+            }
+        }
+    }
+        Time Complexity -> O(r x c) + O(r x c)
+        Space Complexity -> O(r + c)
+
+    */
+
+    
 }
 
 int main(){
