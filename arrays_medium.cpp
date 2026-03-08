@@ -1000,6 +1000,61 @@ void set_matrix_zeroes(std::vector<std::vector<int>> &mat, int r , int c){
 
     */
 
+
+
+    //              OPTIMAL APPROACH
+    /*
+        Instead of using two extra arrays for marking rows and columns,
+        we will use the first row and column of our matrix as our
+        markers, we will use extra variable for our 0th column in row
+        because otherwise the 0th column of row and first row of column
+        will mix up
+    */
+
+    //int row[r] -> mat[0][..]
+    //int col[c] -> mat[..][0]
+
+    int col0 = 1;
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(mat[i][j] == 0){
+                if(j == 0){
+                    col0 = 0;
+                }
+                else{
+                    mat[0][j] = 0;
+                }
+                mat[i][0] = 0;
+            }
+        }
+    }
+
+    for(int i=r-1;i>=1;i--){
+        for(int j=c-1;j>=1;j--){
+            if(mat[i][j] != 0){
+                if(mat[0][j] == 0 || mat[i][0] == 0){
+                    mat[i][j] = 0;
+                }
+            }
+        }
+    }
+
+    if(mat[0][0] == 0){
+        for(int j=0;j<c;j++){
+            mat[0][j] = 0;
+        }
+    }
+
+    if(col0 == 0){
+        for(int i=0;i<r;i++){
+            mat[i][0] = 0;
+        }
+    }
+
+    //      Time Complexity -> O(r x c) + O(r x c)
+    //      Space Complexity -> O(1)
+
+
     
 }
 
