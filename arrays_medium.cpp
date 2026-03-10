@@ -1058,28 +1058,72 @@ void set_matrix_zeroes(std::vector<std::vector<int>> &mat, int r , int c){
     
 }
 
+void generate_permutations(std::vector<int> v1 , int freq[] , std::vector<std::vector<int>>& ans , std::vector<int>& vec){
+    if(vec.size() == v1.size()){
+        ans.push_back(vec);
+        return;
+    }
+    for(int i=0;i<v1.size();i++){
+        if(freq[i] == 0){
+            vec.push_back(v1[i]);
+            freq[i] = 1;
+            generate_permutations(v1,freq,ans,vec);
+            vec.pop_back();
+            freq[i] = 0;
+        }
+    }
+    
+}
+
+void Next_permutation(std::vector<int>& vec){
+
+    /*
+                    BRUTE FORCE
+            
+        -> Generate all permutations.
+        -> Iterate and find current vector and return the one after it.
+        -> If the current is at last, return the first.
+
+        //      Time Complexity -> O(n! x n) -> Extreme, so we dont implement it
+        //      Space Complexity -> O(n!) : to store all possible permutations
+
+    */
+}
+
 int main(){
 
-    int r,c,n;
     cin >> r >> c;
 
-    std::vector<std::vector<int>> mat;
+    // std::vector<std::vector<int>> mat;
 
-    for(int i=0;i<r;i++){
-        std::vector<int> row;
-        for(int j=0;j<c;j++){
-            cin >> n;
-            row.push_back(n);
-        }
-        mat.push_back(row);
+    // for(int i=0;i<r;i++){
+    //     std::vector<int> row;
+    //     for(int j=0;j<c;j++){
+    //         cin >> n;
+    //         row.push_back(n);
+    //     }
+    //     mat.push_back(row);
+    // }
+
+
+    // print(mat,r,c);
+
+    // set_matrix_zeroes(mat,r,c);
+
+    // print(mat,r,c);
+
+    std::vector<int> v1;
+    int n;
+    int num;
+    cin >> n;
+    for(int i=0;i<n;i++){
+        cin >> num;
+        v1.push_back(num);
     }
+    
+    print(v1);
 
-    print(mat,r,c);
-
-    set_matrix_zeroes(mat,r,c);
-
-    print(mat,r,c);
-
+    Next_permutation(v1);
 
     return 0;
 }
