@@ -1088,11 +1088,63 @@ void Next_permutation(std::vector<int>& vec){
         //      Space Complexity -> O(n!) : to store all possible permutations
 
     */
+
+
+
+    /*              BETTER APPROACH
+
+    next_permutation(vec.begin(),vec.end());
+
+        -> In built function of STL which returns the next permutation
+
+    */
+
+
+
+    //                  OPTIMAL APPROACH
+
+    int ind = -1;
+
+    for(int i=vec.size()-2;i>=0;i--){   // start from end and find breakpoint
+        if(vec[i] < vec[i+1]){          // breakpoint is the point where 
+            ind = i;                    // there is a dip, meaning that 
+            break;                      // the current element will be greater
+        }                               // than the one before it
+    }
+
+    if(ind == -1){                              // if there is no breakpoint then
+        for(int i=0;i<vec.size()/2;i++){        // it is the last permutation and 
+            swapp(vec[i],vec[vec.size()-i-1]);  // the next one will be the very first
+        }                                       // arrangement, so we just reverse the array
+        return;                                 
+    }                                           
+
+    for(int i=vec.size()-1;i>ind;i--){      // we start from the end and find
+        if(vec[i] > vec[ind]){              // the first element that is greater 
+            swapp(vec[i],vec[ind]);         // than the breakpoint element and
+            break;                          // we swap it with that
+        }                                   
+    }                                       
+
+    int start = ind+1;
+    int end = vec.size()-1;
+
+    while(start < end){                     // from after the breakpoint till
+        swapp(vec[start],vec[end]);         // the end of array, we reverse it
+        start++;                            // to get the smallest arrangement
+        end--;                              // the elements after the breakpoint are in 
+    }                                       // descending, so we reverse them to get them in ascending
+
+    //      Time Complexity -> O(n) + O(n) + O(n)
+    //      Space Complexity -> O(1)
+
 }
 
 int main(){
 
-    cin >> r >> c;
+    
+    // int r,c,n;
+    // cin >> r >> c;
 
     // std::vector<std::vector<int>> mat;
 
@@ -1112,6 +1164,8 @@ int main(){
 
     // print(mat,r,c);
 
+    
+
     std::vector<int> v1;
     int n;
     int num;
@@ -1124,6 +1178,8 @@ int main(){
     print(v1);
 
     Next_permutation(v1);
+
+    print(v1);
 
     return 0;
 }
