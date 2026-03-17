@@ -47,6 +47,27 @@ vector<int> majority_element_2(int arr[] , int n){
 
 
     
+    /*
+                        BETTER APPROACH
+
+    vector<int> ans;
+    std::map<int,int> hashmap;
+
+    for(int i=0;i<n;i++){
+        hashmap[arr[i]]++;
+        if(hashmap[arr[i]] > n/3){
+            if(ans.size() == 0 || ans.back() != arr[i]){
+                ans.push_back(arr[i]);
+            }
+        }
+        if(ans.size() == 2){break;}
+    }
+
+    return ans;
+
+            Time Complexity -> O(n x log n)
+            Space Complexity -> O(n)
+    */
 }
 
 int main(){
