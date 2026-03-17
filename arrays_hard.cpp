@@ -17,6 +17,38 @@ void print(std::vector<int> v1){
     cout << "]" << endl;
 }
 
+vector<int> majority_element_2(int arr[] , int n){
+
+    /*
+                        BRUTE FORCE
+
+    vector<int> ans;
+    for(int i=0;i<n;i++){
+        if(ans.size() == 0 || ans.back() != arr[i]){
+            int count = 0;
+            for(int j=0;j<n;j++){
+                if(arr[i] == arr[j]){
+                    count++;
+                }
+            }
+            if(count > n/3){
+                ans.push_back(arr[i]);
+            }
+        }
+
+        if(ans.size() == 2){break;} -> an array can at max have two elements that appear more than size/3 times
+    }
+
+    return ans;
+
+            Time Complexity -> O(n x n)
+            Space Complexity -> O(2) -> O(1)
+    */
+
+
+    
+}
+
 int main(){
 
     int n;
@@ -28,6 +60,10 @@ int main(){
     }
 
     print(arr,n);
+
+    vector<int> maj_element = majority_element_2(arr,n);
+
+    print(maj_element);
 
     return 0;
 }
