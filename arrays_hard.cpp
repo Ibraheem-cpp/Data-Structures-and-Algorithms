@@ -68,6 +68,59 @@ vector<int> majority_element_2(int arr[] , int n){
             Time Complexity -> O(n x log n)
             Space Complexity -> O(n)
     */
+
+
+
+    //                  OPTIMAL APPROACH
+    //  Moore's Voting Algorithm with some tweeks 
+
+    int element1 = 0 , element2 = 0;
+    int count1 = 0 , count2 = 0;
+
+    for(int i=0;i<n;i++){
+        if(count1 == 0 && arr[i] != element2){
+            element1 = arr[i];
+            count1 = 1;
+        }
+        else if(count2 == 0 && arr[i] != element1){
+            element2 = arr[i];
+            count2 = 1;
+        }
+        else if(arr[i] == element1){
+            count1++;
+        }
+        else if(arr[i] == element2){
+            count2++;
+        }
+        else{
+            count1--;
+            count2--;
+        }
+    }
+
+    count1 = 0 , count2 = 0;
+
+    for(int i=0;i<n;i++){
+        if(arr[i] == element1){
+            count1++;
+        }
+        else if(arr[i] == element2){
+            count2++;
+        }
+    }
+
+    vector<int> ans;
+    if(count1 > n/3){
+        ans.push_back(element1);
+    }
+    if(count2 > n/3 && element2 != element1){
+        ans.push_back(element2);
+    }
+
+    return ans;
+
+    //      Time Complexity -> O(n) + O(n)
+    //      Space Complexity -> O(1)
 }
 
 int main(){
