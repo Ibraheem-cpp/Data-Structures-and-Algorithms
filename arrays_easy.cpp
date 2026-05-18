@@ -788,6 +788,20 @@ int longest_subarray_with_sum_k_allNumbers(int arr[] , int n , int k){
     
 }
 
+vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> pascal;
+
+        for(int i=0;i<numRows;i++){
+            vector<int> v1(i+1,1);
+            for(int j=1;j<=i-1;j++){
+                v1[j] = pascal[i-1][j-1]+pascal[i-1][j];
+            }
+            pascal.push_back(v1);
+        }
+
+        return pascal;
+    }
+
 int main(){
 
     int n;
@@ -798,9 +812,14 @@ int main(){
         cin >> arr[i];
     }
 
-   print(arr,n);
-
-   cout << "Length of Longest Sub-Array : " << longest_subarray_with_sum_k_nonNegative(arr,n,10);
+    int rows = 30;
+    vector<vector<int>> pascal = generate(rows);
+    for(int i=0;i<pascal.size();i++){
+        for(int j=0;j<pascal[i].size();j++){
+            cout << pascal[i][j] << " ";
+        }
+        cout << endl;
+    }
 
     return 0;
 }
