@@ -802,6 +802,20 @@ vector<vector<int>> generate(int numRows) {
         return pascal;
     }
 
+vector<int> getRow(int rowIndex) {
+        vector<vector<int>> pascal;
+
+        for(int i=0;i<rowIndex+1;i++){
+            vector<int> v1(i+1,1);
+            for(int j = 1;j < i;j++){
+                v1[j] = pascal[i-1][j-1]+pascal[i-1][j];
+            }
+            pascal.push_back(v1);
+        }
+
+        return pascal[rowIndex];
+    }
+
 int main(){
 
     int n;
