@@ -13,7 +13,7 @@ int numberOfSteps(int num) {
 
         return steps;
 
-        //      Time Complexity -> O(n)
+        //      Time Complexity -> O(log n)
         //      Space Complexity -> O(1)
 }
 
