@@ -9,7 +9,7 @@ string reversePrefix(string word, char ch) {
             if(word[i] == ch){
                 ind = i;
                 break;
-            }
+            } 
         }
 
         if(ind != -1){
