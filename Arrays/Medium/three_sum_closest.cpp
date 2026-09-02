@@ -46,7 +46,8 @@ int main(){
     */
 
     vector<int> nums = {0,0,0};
-    cout << threeSumClosest(nums) << endl;
+    int target = 1;
+    cout << threeSumClosest(nums,target) << endl;
 
     return 0;
 }
