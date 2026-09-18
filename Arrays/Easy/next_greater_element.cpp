@@ -6,28 +6,24 @@ vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
         int size1 = nums1.size();
         int size2 = nums2.size();
         unordered_map<int,int> hashmap;
-        for(int i=0;i<size2;i++){
-            hashmap[nums2[i]] = i;
+        stack<int> st;
+        vector<int> answer(size1);
+
+        for(int i=size2-1;i>=0;i--){
+            while(!st.empty() && nums2[i] >= st.top()) st.pop();
+            if(st.empty()) hashmap[nums2[i]] = -1;
+            else hashmap[nums2[i]] = st.top();
+            st.push(nums2[i]);
         }
 
-        vector<int> answer;
         for(int i=0;i<size1;i++){
-            int ind = hashmap[nums1[i]];
-            bool found = false;
-            for(int j=ind+1;j<size2;j++){
-                if(nums2[j] > nums1[i]){
-                    answer.push_back(nums2[j]);
-                    found = true;
-                    break;
-                }
-            }
-            if(!found) answer.push_back(-1);
+            answer[i] = hashmap[nums1[i]];
         }
 
         return answer;
 
-        //      Time Complexity -> O(nums1 x nums2)
-        //      Space Complexity -> O(nums2)
+        //      Time Complexity -> O(n + m)
+        //      Space Complexity -> O(m)
 }
 
 int main(){
